@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +6,92 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'todolist/css/main.css' %}"/>
     <title>Document</title>
+
 </head>
 <body>
-    <p>dojaskdjlas</p>
+     <!-- addnewtask -->
+     <form class="form-inline justify-content-center cc" method="POST">
+        {% csrf_token %}
+        <div class="form-group mx-sm-3 mb-2 ">
+          <input type="text" class="form-control formsizee" name="taskname" placeholder="Enter your new task">
+        </div>
+          <input type="submit" class="btn btn-success s1" value="Create" name="create">
+          <input type="submit" class="btn btn-info d1" value="Refresh" name="refresh">
+      </form>
+
+
+
+
+      {% for t in tasks %}
+    <form class="form-inline justify-content-center cc" method="POST">
+        {% csrf_token %}
+        <div class="form-group mx-sm-3 mb-2 ">
+          <input type="text" class="form-control formsizee" name="old_task" value={{t.task_text}}>
+        </div>
+        {% if t.status == 1 %}
+        <div class="form-check b1">
+            <input class="form-check-input" type="radio" name="option1" value="2" >
+            <label class="form-check-label" for="exampleRadios1">
+              Doing
+            </label>
+          </div>
+          <div class="form-check b2">
+            <input class="form-check-input" type="radio" name="option1" value="1" checked>
+            <label class="form-check-label" for="exampleRadios2">
+              later
+            </label>
+          </div>
+          <div class="form-check b3">
+            <input class="form-check-input" type="radio" name="option1" value="3">
+            <label class="form-check-label" for="exampleRadios3">
+              Done
+            </label>
+          </div>
+        {% elif t.status == 2 %}
+        <div class="form-check b1">
+            <input class="form-check-input" type="radio" name="option1" value="2" checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Doing
+            </label>
+          </div>
+          <div class="form-check b2">
+            <input class="form-check-input" type="radio" name="option1" value="1">
+            <label class="form-check-label" for="exampleRadios2">
+              later
+            </label>
+          </div>
+          <div class="form-check b3">
+            <input class="form-check-input" type="radio" name="option1" value="3">
+            <label class="form-check-label" for="exampleRadios3">
+              Done
+            </label>
+          </div>
+        {% else %}
+        <div class="form-check b1">
+            <input class="form-check-input" type="radio" name="option1" value="2">
+            <label class="form-check-label" for="exampleRadios1">
+              Doing
+            </label>
+          </div>
+          <div class="form-check b2">
+            <input class="form-check-input" type="radio" name="option1" value="1">
+            <label class="form-check-label" for="exampleRadios2">
+              later
+            </label>
+          </div>
+          <div class="form-check b3">
+            <input class="form-check-input" type="radio" name="option1" value="3" checked>
+            <label class="form-check-label" for="exampleRadios3">
+              Done
+            </label>
+          </div>
+        {% endif %}
+        <input type="text" class="form-control  wwq" name="prikey" value={{t.pk}}>
+          <input type="submit" class="btn btn-success s1" value="Update" name="update">
+          <input type="submit" class="btn btn-info d1" value="Delete" name="delete">
+      </form>
+      {% endfor %}
 </body>
 </html>
