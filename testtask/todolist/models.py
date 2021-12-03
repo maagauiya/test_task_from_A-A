@@ -7,5 +7,5 @@ class Todolist(models.Model):
         (2, 'doing'),
         (3, 'done')
     ]
-    task_text=models.CharField(max_length=100,blank=False)
+    task_text=models.TextField(max_length=100,blank=False)
     status = models.IntegerField(_("status"), choices=status,blank=False,default=2)

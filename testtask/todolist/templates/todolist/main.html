@@ -12,7 +12,8 @@
 </head>
 <body>
      <!-- addnewtask -->
-     <form class="form-inline justify-content-center cc" method="POST">
+
+     <form class="form-inline  cc" method="POST">
         {% csrf_token %}
         <div class="form-group mx-sm-3 mb-2 ">
           <input type="text" class="form-control formsizee" name="taskname" placeholder="Enter your new task">
@@ -23,12 +24,11 @@
 
 
 
-
       {% for t in tasks %}
-    <form class="form-inline justify-content-center cc" method="POST">
+    <form class="form-inline  cc " method="POST">
         {% csrf_token %}
-        <div class="form-group mx-sm-3 mb-2 ">
-          <input type="text" class="form-control formsizee" name="old_task" value={{t.task_text}}>
+        <div class="form-group mx-sm-3 mb-2">
+          <input type="text" class="form-control formsizee" name="old_task" value="{{t.task_text}}">
         </div>
         {% if t.status == 1 %}
         <div class="form-check b1">
@@ -93,5 +93,6 @@
           <input type="submit" class="btn btn-info d1" value="Delete" name="delete">
       </form>
       {% endfor %}
+
 </body>
 </html>
