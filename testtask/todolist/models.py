@@ -9,3 +9,4 @@ class Todolist(models.Model):
     ]
     task_text=models.TextField(max_length=100,blank=False)
     status = models.IntegerField(_("status"), choices=status,blank=False,default=2)
+    userid = models.IntegerField(blank=True,null=True)

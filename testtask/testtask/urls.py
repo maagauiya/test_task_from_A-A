@@ -8,9 +8,5 @@ from .schema import schema
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('todolist.urls')),
-    path('graphql/',GraphQLView.as_view(
-        graphiql=True,
-        schema=schema
-    )),
+    path('',include('todolist.urls'))
 ]
